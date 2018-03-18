@@ -1,0 +1,11 @@
+version: '2'
+services:
+  geth:
+    image: ethereum/client-go
+    restart: always    
+    volumes:
+      - ./genesis/genesis.json:/genesis.json
+    ports:  
+      - "30303:30303"
+      - "30303:30303/udp"
+      - "8545:8545"
