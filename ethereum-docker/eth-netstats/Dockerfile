@@ -6,9 +6,8 @@ RUN git clone https://github.com/cubedro/eth-netstats --depth 1
 
 WORKDIR /eth-netstats
 
-RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
-RUN cnpm install
-RUN cnpm install -g grunt-cli
+RUN npm install
+RUN npm install -g grunt-cli
 RUN grunt
 
 EXPOSE 3000
