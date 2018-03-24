@@ -1,13 +1,13 @@
-FROM node:8-alpine
+FROM node:9
 
-RUN apk add --update git
+RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 RUN git clone https://github.com/cubedro/eth-netstats --depth 1
 
 WORKDIR /eth-netstats
 
-RUN npm install
-RUN npm install -g grunt-cli
+RUN cnpm install
+RUN cnpm install -g grunt-cli
 RUN grunt
 
 EXPOSE 3000
