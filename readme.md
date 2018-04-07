@@ -2,6 +2,7 @@
 
 > 使用docker-machine进行对docker集群部署以太坊私有链
 
+![BUILD](https://img.shields.io/docker/build/jrottenberg/ffmpeg.svg)   
 源码: https://github.com/HuaRongSAO/ethereum-testnet-docker
 
 作者环境:
@@ -106,27 +107,19 @@ cd ethereum-testnet-docker
 
 ```sh
 .
-├── docker-compose.yml
-├── ethereum-docker
-│   ├── docker-compose-standalone.yml
-│   ├── docker-compose.yml
+├── docker-compose-standalone.yml # 单独启动一个eth节点
+├── docker-compose.yml # 单独启动一个eth节点， 一个初始节点， 一个网络状态
+├── eth-netstats # 网络状态
+│   └── Dockerfile
+├── genesis # 初始化配置
+│   ├── genesis.json
+│   ├── keystore # 初始化 配置账户
+│   │   ├── UTC--2018-03-20T06-02-05.635648305Z--d6e2f555878f29ca190b8ef6bf7de334e1c47e51
+├── geth-node # 以太坊节点+api
+│   ├── app.json
 │   ├── Dockerfile
-│   ├── eth-netstats
-│   │   └── Dockerfile
-│   ├── files
-│   │   ├── genesis.json
-│   │   ├── keystore
-│   │   │   ├── UTC--2018-03-20T06-02-05.635648305Z--d6e2f555878f29ca190b8ef6bf7de334e1c47e51 # 用于初始化股东的持有币
-│   │   └── password
-│   ├── LICENSE
-│   ├── monitored-geth-client
-│   │   ├── app.json
-│   │   ├── Dockerfile
-│   │   └── start.sh
-│   └── README.md
-├── genesis
-│   └── genesis.json
-├── init.sh
+│   └── start.sh
+├── install-compose.sh
 └── readme.md
 
 ```
@@ -309,9 +302,9 @@ git clone https://github.com/HuaRongSAO/ethereum-testnet-docker --depth 1
 # 跳转目录
 cd ethereum-testnet-docker
 # 为脚本添加权限
-sudo chmod +x ./init.sh
+sudo chmod +x ./install-compose.sh
 # 运行脚本
-./init.sh
+./install-compose.sh
 ```
 
 这里解释一下脚本: 只是用来安装docker-compose
